@@ -14,11 +14,11 @@ function makeFloatButton() {
 
     if (document.documentElement.scrollTop > 100) {
         el.classList.add('fixedElement');
-    }   
-    if(document.documentElement.scrollTop < 100 ){
+    }
+    if (document.documentElement.scrollTop < 100) {
         el.classList.remove('fixedElement');
     }
-    
+
 }
 
 window.addEventListener('scroll', makeFloatButton);
@@ -45,10 +45,10 @@ function salvarCadastro() {
     dados.cadastros.push(novoCadastro);
     salvaDados(dados);
 }
-
+let objDados = {};
 function lerDados() {
     let strDados = localStorage.getItem('db');
-    let objDados = {};
+    objDados = {};
 
     if (strDados) {
         objDados = JSON.parse(strDados);
@@ -65,7 +65,28 @@ function salvaDados(dados) {
     localStorage.setItem('db', JSON.stringify(dados));
 }
 
-document.getElementById('botao').addEventListener('click', function () {
-    salvarCadastro();
-    window.location.href = 'cadastros.html';
-});
+
+function validar() {
+
+    let nome = document.getElementById('nome').value;
+    let email = document.getElementById('email').value;
+    let telefone = document.getElementById('telefone').value;
+    let idJogador = document.getElementById('idJogador').value;
+    let clube = document.getElementById('clube').value;
+
+
+
+    if(nome == '' || email == '' || telefone == '' || idJogador == '' || clube == '') {
+        const msgerro = document.querySelector('.teste');
+        msgerro.style.display = "block"
+        msgerro.innerText = "Digite corretamente os dados"
+        setTimeout(() => { msgerro.setAttribute('style', 'display:none') }, 2000)
+
+    }
+    else {
+        
+        salvarCadastro();
+        window.location.href = 'cadastros.html';
+    }
+}
+
