@@ -1,71 +1,71 @@
 function voltar() {
-    const botao = document.querySelector(".btn-subir")
-    botao.addEventListener("click", scrollTo(0, 0))
+    const botao = document.querySelector(".btn-subir");
+    botao.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+            duration: 1500
+        });
+    });
 }
-function flutuar() {
-    const botao = document.querySelector("main-section")
-    if (document.documentElement.scrollTop > 20) {
-        botao.classList.add('btn-subir')
-    }
-    if (document.documentElement.scrollTop < 20) {
-        botao.classList.remove('btn-subir')
-    }
-}
-window.onscroll = flutuar;
 
+function makeFloatButton() {
+    var el = document.querySelector('.btn-subir');
+
+    if (document.documentElement.scrollTop > 100) {
+        el.classList.add('fixedElement');
+    }   
+    if(document.documentElement.scrollTop < 100 ){
+        el.classList.remove('fixedElement');
+    }
+    
+}
+
+window.addEventListener('scroll', makeFloatButton);
+
+
+
+
+function salvarCadastro() {
+    let nome = document.getElementById('nome').value;
+    let email = document.getElementById('email').value;
+    let telefone = document.getElementById('telefone').value;
+    let idJogador = document.getElementById('idJogador').value;
+    let clube = document.getElementById('clube').value;
+
+    let novoCadastro = {
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        idJogador: idJogador,
+        clube: clube
+    };
+
+    let dados = lerDados();
+    dados.cadastros.push(novoCadastro);
+    salvaDados(dados);
+}
 
 function lerDados() {
     let strDados = localStorage.getItem('db');
-    var objDados = {};
+    let objDados = {};
 
     if (strDados) {
-
         objDados = JSON.parse(strDados);
-    }
-    else {
+    } else {
         objDados = {
-            cadastros: [
-                {
-                    nome: "",
-                    email: "",
-                    telefone: "",
-                    idJogador: "",
-                    clube: ""
-                },
-            ]
+            cadastros: []
         };
         salvaDados(objDados);
     }
-    return objDados
+    return objDados;
 }
-
 
 function salvaDados(dados) {
     localStorage.setItem('db', JSON.stringify(dados));
 }
 
-    let botao = document.getElementById('botao');
-    botao.addEventListener('click', function(){
-    let strnome = document.getElementById('nome').value;
-
-    let novoCadastro = {
-        nome: strnome
-    }
-
-    objDados.cadastros.push(novoCadastro);
-
-    salvaDados(objDados);
-    ImprimirDados();
-
+document.getElementById('botao').addEventListener('click', function () {
+    salvarCadastro();
+    window.location.href = 'cadastros.html';
 });
-
-function ImprimirDados() {
-    let tela = document.getElementById('usuarios');
-    let strHtml = '';
-    let dados = lerDados();
-
-    for (i = 0; i < objDados.cadastros.length; i++) {
-        strHtml += `<tr><td>${strnome}</td></tr>`
-    }
-    tela.innerHTML = strHtml;
-}

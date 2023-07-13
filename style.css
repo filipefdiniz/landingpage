@@ -11,6 +11,7 @@
 body{
     width: 100vw;
     height: 100vh;
+    
 }
 .logosx{
     width: 250px;
@@ -40,8 +41,9 @@ header{
     text-align: center;
     font-size: 20px;
     font-weight: bold;
+    
 }
-.texto-main #titulo{
+#titulo{
     margin-bottom: 50px;
     color: var(--cor-texto);
     text-transform: uppercase;
@@ -115,17 +117,86 @@ header{
     margin-left: 50px;
     
 }
-.btn-subir{
+.btn-subir {
     position: absolute;
-    float:right;
-    background-color: black;
+    right: 50px;
+    bottom: 50px;
+    background-color: transparent;
     border: none;
-    margin-left: 1800px;
+    cursor: pointer;
+    display: none;
     
 }
+
+.fixedElement {
+    display: block;
+    position: fixed;
+}
+
+
 .icon:hover{
     width: 45px;
     box-shadow: 2px 5px 5px var(--cor-texto);
     transition: 0.5s;
     border-radius: 15px;
+}
+
+tr{
+    display: flex;
+}
+
+td{
+    border: solid 1px rgb(255, 255, 255);
+    min-width: 200px;
+    max-width: 200px;
+    text-align: center;
+    padding: 10px;
+}
+.tabela1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('https://sps.sxgrupo.com.br/hubfs/lp%20textura.png') !important;
+    color: white;
+}
+.titulo{
+    font-weight: bold;
+    color: var(--cor-texto);
+}
+.info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+   
+}
+.sobre{
+    font-size: 20px;
+}
+.cara{
+    object-fit: contain;
+}
+.sxbtn{
+    padding: 10px;
+    background-color: white;
+    color: var(--cor-texto);
+    border-radius: 7px;
+    border: solid 2px var(--cor-texto);
+    font-size: 15px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.sxbtn:hover{
+    background-color: var(--cor-texto);
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.sobre{
+    width: 600px;
+    text-align: justify;
 }
